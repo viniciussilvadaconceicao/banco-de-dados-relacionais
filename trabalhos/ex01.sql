@@ -7,7 +7,7 @@ CREATE TABLE aluno(
 
 CREATE TABLE responsavel(
 	responsavelID SERIAL PRIMARY KEY,
-	nome VARCHAR(100)NOT NULL,
+	nome_responsavel VARCHAR(100)NOT NULL,
 	idade INT CHECK(idade >= 0) NOT NULL
 );
 
@@ -30,29 +30,29 @@ INSERT INTO aluno VALUES(4,'andreza azevedo',27);
 INSERT INTO aluno VALUES(5,'alice azevedo',18);
 INSERT INTO aluno VALUES(6,'joaquim gusman',30);
 INSERT INTO responsavel VALUES(1,'abraao silva',45);
-INSERT INTO responsavel VALUES(2,'gioavani almeida',48);
+INSERT INTO responsavel VALUES(2,'giovani almeida',48);
 INSERT INTO responsavel VALUES(3,'nilton silva',58);
 INSERT INTO responsavel VALUES(4,'irinete azevedo',57);
 INSERT INTO responsavel VALUES(5,'vinicius conceicao',46);
 INSERT INTO responsavel VALUES(6,'pablo gusman',55);
 INSERT INTO desempenho_aluno VALUES(
-1,(SELECT alunoID FROM aluno WHERE nome ='andre silva'),5.9,'REPROVADO',1,(SELECT responsavelID FROM responsavel WHERE nome ='abraao silva'));
+1,(SELECT alunoID FROM aluno WHERE nome ='andre silva'),5.9,'REPROVADO',1,(SELECT responsavelID FROM responsavel WHERE nome_responsavel ='abraao silva'));
 INSERT INTO desempenho_aluno VALUES(
-2,(SELECT alunoID FROM aluno WHERE nome='rodrigo almeida'),7,'APROVADO',2,(SELECT responsavelID FROM responsavel WHERE nome ='giovani almeida'));
+2,(SELECT alunoID FROM aluno WHERE nome='rodrigo almeida'),7,'APROVADO',2,(SELECT responsavelID FROM responsavel WHERE nome_responsavel ='giovani almeida'));
 INSERT INTO desempenho_aluno VALUES(
-3,(SELECT alunoID FROM aluno WHERE nome='vinicius silva'),9,'APROVADO',4,(SELECT responsavelID FROM responsavel WHERE nome='nilton silva'));
+3,(SELECT alunoID FROM aluno WHERE nome='vinicius silva'),9,'APROVADO',4,(SELECT responsavelID FROM responsavel WHERE nome_responsavel='nilton silva'));
 INSERT INTO desempenho_aluno VALUES(
-4,(SELECT alunoID FROM aluno WHERE nome='andreza azevedo'),10,'APROVADO',3,(SELECT responsavelID FROM responsavel WHERE nome='irinete azevedo'));
+4,(SELECT alunoID FROM aluno WHERE nome='andreza azevedo'),10,'APROVADO',3,(SELECT responsavelID FROM responsavel WHERE nome_responsavel='irinete azevedo'));
 INSERT INTO desempenho_aluno VALUES(
-5,(SELECT alunoID FROM aluno WHERE nome='alice azevedo'),9,'APROVADO',8,(SELECT responsavelID FROM responsavel WHERE nome='vinicius conceicao'));
+5,(SELECT alunoID FROM aluno WHERE nome='alice azevedo'),9,'APROVADO',8,(SELECT responsavelID FROM responsavel WHERE nome_responsavel='vinicius conceicao'));
 INSERT INTO desempenho_aluno VALUES(
-6,(SELECT alunoID FROM aluno WHERE nome='joaquim gusman'),5,'REPROVADO',5,(SELECT responsavelID FROM responsavel WHERE nome='pablo gusman'));
+6,(SELECT alunoID FROM aluno WHERE nome='joaquim gusman'),5,'REPROVADO',5,(SELECT responsavelID FROM responsavel WHERE nome_responsavel='pablo gusman'));
 
 -- aqui eu crio uma atualizacao e dois delete
 UPDATE aluno SET nome='alice azevedo da conceicao'WHERE alunoID = 1;
 
-DELETE FROM desempenho_aluno WHERE alunoID = 6;
-DELETE FROM aluno WHERE alunoID = 6;
+DELETE FROM desempenho_aluno WHERE alunoID = 5;
+DELETE FROM aluno WHERE alunoID = 5;
 
 -- aqui é a parte do join juntando as duas tabela aluno e responsavel
 SELECT 
@@ -61,7 +61,7 @@ aluno.nome,
 desempenho_aluno.nota,
 desempenho_aluno.status,
 desempenho_aluno.periodo,
-responsavel.nome
+responsavel.nome_responsavel
 FROM
 desempenho_aluno
 JOIN 
