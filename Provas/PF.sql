@@ -56,10 +56,10 @@ EXECUTE FUNCTION preencher_log_tabela();
 -- questão 3 realizar os insert into
 
 INSERT INTO clientes(nome_cliente, telefone)VALUES
-('lucas pereira', 1198761234),
-('mariana oliveira', 2112345678),
-('joao silva', 3111112222),
-('vinicius silva da conceicao', 2299992222);
+('lucas pereira', '(11)9876-1234'),
+('mariana oliveira', '(21)1234-5678'),
+('joao silva', '(31)1111-2222'),
+('vinicius silva da conceicao', '(22)9999-2222');
 
 INSERT INTO jogos(id_cliente,nome_jogo,categoria,preco,estoque)VALUES
 (1,'THE WITCHER 3','RPG',200, 10),
@@ -76,7 +76,7 @@ INSERT INTO pedidos(id_cliente,id_jogo,quantidade_pedido,data_pedido,pagamento)V
 (4,5,1,'2025-06-30','dinheiro');
 
 --questão 4 views
---primeira view
+--primeira
 CREATE VIEW view_pedidos AS
 SELECT 
     clientes.id_cliente,
@@ -91,6 +91,7 @@ JOIN clientes ON log_pedidos.id_cliente = clientes.id_cliente
 JOIN jogos ON log_pedidos.id_jogo = jogos.id_jogo;
 
 -- segunda view
+
 CREATE VIEW quantidade_total_jogo AS
 SELECT
     clientes.id_cliente,
