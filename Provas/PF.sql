@@ -48,6 +48,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trigger_preencher_log_tabela
 AFTER INSERT ON pedidos
 FOR EACH ROW

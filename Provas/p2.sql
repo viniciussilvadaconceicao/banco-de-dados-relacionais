@@ -44,11 +44,8 @@ SELECT
 CREATE OR REPLACE FUNCTION log_consulta_funcion()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO log_consulta(
-    id_consulta, data_hora_log
-    )VALUES(
-        new.id_consulta,NOW()
-    );
+    INSERT INTO log_consulta(id_consulta, data_hora_log)VALUES
+    (new.id_consulta,NOW());
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
